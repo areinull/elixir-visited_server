@@ -93,7 +93,7 @@ defmodule VisitedServer.Web do
     |> Plug.Conn.send_resp(404, "Not Found")
   end
 
-  @spec get_domains(integer, integer) :: {integer, list(String)} | {integer, String}
+  @spec get_domains(integer, integer) :: {integer, list(String.t())} | {integer, String.t()}
   defp get_domains(from, to) do
     case VisitedServer.Server.get_visited_domains(from, to) do
       {:ok, domains} -> {200, Poison.encode!(%{domains: domains, status: "ok"})}
@@ -105,7 +105,7 @@ defmodule VisitedServer.Web do
     {400, Poison.encode!(%{status: "Wrong query parameters"})}
   end
 
-  @spec process_links(list(String), integer) :: {integer, String}
+  @spec process_links(list(String.t()), integer) :: {integer, String.t()}
   defp process_links(links, utime) do
     case VisitedServer.Server.add_visited_links(links, utime) do
       :ok -> {200, Poison.encode!(%{status: "ok"})}
@@ -117,7 +117,7 @@ defmodule VisitedServer.Web do
     {400, Poison.encode!(%{status: "Expected Payload: { \"links\": [...] }"})}
   end
 
-  @spec parse_utime(String) :: {:ok, integer} | :error
+  @spec parse_utime(String.t()) :: {:ok, integer} | :error
   defp parse_utime(utime) do
     case Integer.parse(utime) do
       {int, ""} -> {:ok, int}

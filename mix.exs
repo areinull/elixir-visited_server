@@ -7,7 +7,11 @@ defmodule VisitedServer.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: [
+        plt_add_deps: :app_tree,
+        plt_add_apps: [:poison]
+      ]
     ]
   end
 
@@ -17,6 +21,7 @@ defmodule VisitedServer.MixProject do
       applications: [:redis_poolex],
       extra_applications: [:logger, :plug_cowboy],
       mod: {VisitedServer.Application, []}
+
     ]
   end
 
@@ -25,7 +30,8 @@ defmodule VisitedServer.MixProject do
     [
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 4.0"},
-      {:redis_poolex, "~> 0.0.5"}
+      {:redis_poolex, "~> 0.0.5"},
+      {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
 end

@@ -4,7 +4,7 @@ defmodule VisitedServer.Model do
   list of domains as values.
   """
 
-  @type state :: %{optional(integer) => String}
+  @type state :: %{optional(integer) => String.t()}
 
   @domain_regex ~r{^(([[:alnum:]]([[:alnum:]\-]*[[:alnum:]])*\.)+[[:alpha:]]+)(/[[:graph:]]*)?$}
 
@@ -29,7 +29,7 @@ defmodule VisitedServer.Model do
   persist changes in database.
   Returns updated state or error description with old state.
   """
-  @spec add_visited_links(state, list(String), integer) :: {:ok, state} | {:error, state, String}
+  @spec add_visited_links(state, list(String.t()), integer) :: {:ok, state} | {:error, state, String.t()}
   def add_visited_links(state, links, utime) do
     try do
       new_state =
@@ -50,7 +50,7 @@ defmodule VisitedServer.Model do
   Get list of visited domains in time range [`from`, `to`].
   Returns {:ok, domain list} on success.
   """
-  @spec get_visited_domains(state, integer, integer) :: {:ok, list(String)}
+  @spec get_visited_domains(state, integer, integer) :: {:ok, list(String.t())}
   def get_visited_domains(state, from, to) do
     domains =
       state
@@ -61,11 +61,13 @@ defmodule VisitedServer.Model do
     {:ok, domains}
   end
 
+  @spec extract_domain(String.t()) :: String.t() | nil
   defp extract_domain(link) do
     uri = URI.decode(link) |> URI.parse()
     validate_simple_domain(uri.host || link)
   end
 
+  @spec validate_simple_domain(String.t()) :: String.t() | nil
   defp validate_simple_domain(uri) do
     case Regex.run(@domain_regex, uri) do
       [_ | [domain | _]] -> domain
@@ -73,6 +75,7 @@ defmodule VisitedServer.Model do
     end
   end
 
+  @spec add_domain(state, String.t(), integer) :: state
   defp add_domain(state, domain, utime) do
     Map.update(state, utime, [domain], &[domain | &1])
   end

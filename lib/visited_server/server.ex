@@ -13,7 +13,7 @@ defmodule VisitedServer.Server do
   Save visited `links` at `utime`.
   Returns :ok on success.
   """
-  @spec add_visited_links(list(String), integer) :: :ok | {:error, String}
+  @spec add_visited_links(list(String.t()), integer) :: :ok | {:error, String.t()}
   def add_visited_links(links, utime) do
     GenServer.call(__MODULE__, {:add, links, utime})
   end
@@ -22,7 +22,7 @@ defmodule VisitedServer.Server do
   Get list of visited domains in time range [`from`, `to`].
   Returns domain list (can be empty).
   """
-  @spec get_visited_domains(integer, integer) :: {:ok, list(String)} | {:error, String}
+  @spec get_visited_domains(integer, integer) :: {:ok, list(String.t())} | {:error, String.t()}
   def get_visited_domains(from, to) do
     GenServer.call(__MODULE__, {:get, from, to})
   end

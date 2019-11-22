@@ -1,6 +1,7 @@
 %{
   "cowboy": {:hex, :cowboy, "2.7.0", "91ed100138a764355f43316b1d23d7ff6bdb0de4ea618cb5d8677c93a7a2f115", [:rebar3], [{:cowlib, "~> 2.8.0", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.7.1", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "2.8.0", "fd0ff1787db84ac415b8211573e9a30a3ebe71b5cbff7f720089972b2319c8a4", [:rebar3], [], "hexpm"},
+  "dialyxir": {:hex, :dialyxir, "0.5.1", "b331b091720fd93e878137add264bac4f644e1ddae07a70bf7062c7862c4b952", [:mix], [], "hexpm"},
   "eredis": {:hex, :eredis, "1.2.0", "0b8e9cfc2c00fa1374cd107ea63b49be08d933df2cf175e6a89b73dd9c380de4", [:rebar3], [], "hexpm"},
   "exredis": {:hex, :exredis, "0.3.0", "2530d9d8d5a98c5bc80bf7a14e15440a88abd6457618682f10851e39ebdd518b", [:mix], [{:eredis, ">= 1.0.8", [hex: :eredis, repo: "hexpm", optional: false]}], "hexpm"},
   "mime": {:hex, :mime, "1.3.1", "30ce04ab3175b6ad0bdce0035cba77bba68b813d523d1aac73d9781b4d193cf8", [:mix], [], "hexpm"},

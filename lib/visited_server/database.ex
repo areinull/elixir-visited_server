@@ -10,7 +10,7 @@ defmodule VisitedServer.Database do
   Load server state from database.
   Return server state (map).
   """
-  @spec load() :: %{optional(integer) => String}
+  @spec load() :: %{optional(integer) => String.t()}
   def load do
     load_helper(%{}, Redis.query(["KEYS", "visited_domains:*"]))
   end
@@ -19,7 +19,7 @@ defmodule VisitedServer.Database do
   Add visited `domain` at `utime` to database.
   Returns added `domain`.
   """
-  @spec store(integer, String) :: String
+  @spec store(integer, String.t()) :: String.t()
   def store(utime, domain) do
     Redis.query(["SADD", "visited_domains:#{utime}", domain])
     domain
