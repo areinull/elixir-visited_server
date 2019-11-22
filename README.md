@@ -1,9 +1,9 @@
 # VisitedServer
 
-Web server provides JSON API to store visited links and query visited domains fith time filtering.
+Web server provides JSON API to store visited links and query visited domains with time filtering.
 
 ## API
-1. Store domains of provided links
+1. Store domains of provided links  
    Request:
    ```
    POST /visited_links
@@ -13,7 +13,7 @@ Web server provides JSON API to store visited links and query visited domains fi
        "https://ya.ru?q=123",
        "funbox.ru",
        "https://stackoverflow.com/questions/11828270/how-to-exit-the-vim-editor"
-       ]
+      ]
    }
    ```
 
@@ -27,7 +27,9 @@ Web server provides JSON API to store visited links and query visited domains fi
 2. Get visited domains filtered by time range
 
    Request:
-   `GET /visited_domains?from=1545217638&to=1545221231`
+   ```
+   GET /visited_domains?from=1545217638&to=1545221231
+   ```
 
    Response:
    ```
@@ -43,16 +45,16 @@ Web server provides JSON API to store visited links and query visited domains fi
 
 ## Running
 
-First, get project dependencies:
+First, get project dependencies:  
 `mix deps.get`
 
-Configuration files can be found in `./config/` folder.
+Configuration files can be found in `./config/` folder.  
 Server port and Redis DB parameters are available.
 
-Use the following command to run server from root folder:
+Use the following command to run server from root folder:  
 `mix run --no-halt`
 
-Testsuite can be run with:
+Testsuite can be run with:  
 `mix test`
 
 ## Accessing API
